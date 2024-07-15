@@ -28,7 +28,7 @@
 body {
   background-color:aliceblue;
   /* TODO[DONE]: change the font - be mindful of how fonts are imported in the webpage */
-  font-family: 'Papyrus', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   /* TODO[DONE]: change the background colour */
   color: #2d82c8;
   font-size: 16px;

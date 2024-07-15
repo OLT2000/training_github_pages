@@ -4,53 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <title>My GitHub Profile</title>
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"> -->
+    <title>My Staff Profile</title>
     <script src="https://kit.fontawesome.com/a86c93a2cb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="container">
       <div class="card-white">
-        <h1>Hello I'm Ollie</h1>
-        <h2>Here's a subheader.</h2>
+        <h1>Oliver Thurston</h1>
+        <h2>QA Egineer at Solirius Consulting</h2>
         <img src="images/Red_Panda.jpg" alt="Profile Picture of Ollie Thurston" width="200px" height="200px" class="img-circle">
-        <h3>Here is a Red Panda</h3>
-        <p>I studied at the University of Bristol.</p>
+        <h3>My Profil Photo is a Red Panda.</h3>
+        <p>Hi, I'm Ollie. I joined Solirius Consulting as a QA Engineer on the 8th of July 2024. I studied Engineering Mathematics at the University of Bristol, and I'm passionate about Data, ML and AI.</p>
         <a href="mailto:olliethurston1@gmail.com" class="btn-blue">Contact Me</a>
       </div>
-
-      <div class="card-white">
-        <a href="my_first_blog.html">First Blog Post</a>
-      </div>
-
-      <div class="card-white">
-        <!-- ADD CODE HERE -->
-        <h3>Create a New Blog Post</h3>
-        <form id="blogForm">
-          <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
-          </div>
-          <div class="form-group">
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-          </div>
-          <div class="form-group">
-            <label for="body">Body:</label>
-            <textarea id="body" name="body" rows="10" required></textarea>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn-blue">Submit</button>
-          </div>
-        </form>
-      </div>
-
-      <div class="card-white" id="blogPosts">
-        <h3>Recent Blog Posts</h3>
-        <!-- New blog posts will be added here -->
-      </div>
-
       <div class="card-white">
         <h3>Follow Me</h3>
         <ul class="list-inline">
@@ -66,54 +34,5 @@
         </ul>
       </div>
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const blogForm = document.getElementById('blogForm');
-        const blogPostsContainer = document.getElementById('blogPosts');
-
-        blogForm.addEventListener('submit', function(event) {
-          event.preventDefault();
-
-          const title = document.getElementById('title').value;
-          const date = document.getElementById('date').value;
-          const body = document.getElementById('body').value;
-
-          const blogPost = {
-            title: title,
-            date: date,
-            body: body
-          };
-
-          let blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
-          blogPosts.push(blogPost);
-          localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
-
-          addBlogPostToDOM(blogPost);
-          blogForm.reset();
-        });
-
-        function addBlogPostToDOM(post) {
-          const postLink = document.createElement('a');
-          postLink.href = "#";
-          postLink.textContent = post.title;
-          postLink.addEventListener('click', function() {
-            displayBlogPost(post);
-          });
-
-          const postItem = document.createElement('div');
-          postItem.appendChild(postLink);
-          blogPostsContainer.appendChild(postItem);
-        }
-
-        function displayBlogPost(post) {
-          alert(`Title: ${post.title}\nDate: ${post.date}\n\n${post.body}`);
-        }
-
-        // Load blog posts from localStorage
-        const savedBlogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
-        savedBlogPosts.forEach(addBlogPostToDOM);
-      });
-    </script>
   </body>
 </html>
