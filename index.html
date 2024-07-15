@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <!-- TODO[DONE]: change the title tag - this is the name of the tab title -->
     <title>My GitHub Profile</title>
     <script src="https://kit.fontawesome.com/a86c93a2cb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
@@ -13,15 +12,11 @@
   <body>
     <div class="container">
       <div class="card-white">
-        <!-- TODO[DONE]: change the name and subtitle below -->
         <h1>Hello I'm Ollie</h1>
         <h2>Here's a subheader.</h2>
         <img src="images/Red_Panda.jpg" alt="Profile Picture of Ollie Thurston" width="200px" height="200px" class="img-circle">
         <h3>Here is a Red Panda</h3>
-        <p>
-          I studied at the University of Bristol.
-        </p>
-        <!-- TODO[DONE]: update the email below - think about how the email link operate. Does it open in the same or new tab? -->
+        <p>I studied at the University of Bristol.</p>
         <a href="mailto:olliethurston1@gmail.com" class="btn-blue">Contact Me</a>
       </div>
 
@@ -32,8 +27,7 @@
       <div class="card-white">
         <!-- ADD CODE HERE -->
         <h3>Create a New Blog Post</h3>
-        <h3>Add a new blog</h3>
-        <form action="submit_blog_post.html" method="post">
+        <form id="blogForm">
           <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required>
@@ -52,10 +46,13 @@
         </form>
       </div>
 
+      <div class="card-white" id="blogPosts">
+        <h3>Recent Blog Posts</h3>
+        <!-- New blog posts will be added here -->
+      </div>
+
       <div class="card-white">
         <h3>Follow Me</h3>
-        <!-- TODO[DONE]: add some social links here and use Fontawesome icons -->
-        <!-- https://fontawesome.com/search?o=r&m=free -->
         <ul class="list-inline">
           <li>
             <a href="https://github.com/OLT2000">
@@ -64,10 +61,59 @@
           </li>
           <li>
             <a href="https://www.instagram.com/thurstxn_/">
-              <i class="fa-brands fa-instagram icon-larger"></i></a> *
+              <i class="fa-brands fa-instagram icon-larger"></i></a>
           </li>
         </ul>
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const blogForm = document.getElementById('blogForm');
+        const blogPostsContainer = document.getElementById('blogPosts');
+
+        blogForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          const title = document.getElementById('title').value;
+          const date = document.getElementById('date').value;
+          const body = document.getElementById('body').value;
+
+          const blogPost = {
+            title: title,
+            date: date,
+            body: body
+          };
+
+          let blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+          blogPosts.push(blogPost);
+          localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
+
+          addBlogPostToDOM(blogPost);
+          blogForm.reset();
+        });
+
+        function addBlogPostToDOM(post) {
+          const postLink = document.createElement('a');
+          postLink.href = "#";
+          postLink.textContent = post.title;
+          postLink.addEventListener('click', function() {
+            displayBlogPost(post);
+          });
+
+          const postItem = document.createElement('div');
+          postItem.appendChild(postLink);
+          blogPostsContainer.appendChild(postItem);
+        }
+
+        function displayBlogPost(post) {
+          alert(`Title: ${post.title}\nDate: ${post.date}\n\n${post.body}`);
+        }
+
+        // Load blog posts from localStorage
+        const savedBlogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        savedBlogPosts.forEach(addBlogPostToDOM);
+      });
+    </script>
   </body>
 </html>
