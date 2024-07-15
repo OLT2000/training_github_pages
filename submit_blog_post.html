@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <title>Blog Post Submitted</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .post {
+            margin-bottom: 20px;
+        }
+        .post h2 {
+            color: #555;
+        }
+        .post p {
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blog Post Submitted</h1>
+        <div class="post">
+            <h2 id="postTitle">Title: [Title]</h2>
+            <p id="postDate">Date: [Date]</p>
+            <p id="postBody">Body: [Body]</p>
+        </div>
+        <a href="index.html" class="btn-blue">Back to Home</a>
+    </div>
+    <script>
+        // This script extracts URL parameters and displays the submitted post details.
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const title = urlParams.get('title');
+            const date = urlParams.get('date');
+            const body = urlParams.get('body');
+
+            document.getElementById('postTitle').textContent = `Title: ${title}`;
+            document.getElementById('postDate').textContent = `Date: ${date}`;
+            document.getElementById('postBody').textContent = `Body: ${body}`;
+        });
+    </script>
+</body>
+</html>
